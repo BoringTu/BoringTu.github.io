@@ -10,8 +10,13 @@
     <meta name="author" content="BoringTu">
     
     
+				<!--
+				<link rel="icon" href="https://boringtu.com/assets/images/head.jpeg">
+				-->
+				<link rel="icon" href="/assets/images/favicon.ico">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"BoringTu","sameAs":[]},"articleBody":"Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.\nQuick StartCreate a new post1$ hexo new \"My New Post\"\nMore info: Writing\nRun server1$ hexo server\nMore info: Server\nGenerate static files1$ hexo generate\nMore info: Generating\nDeploy to remote sites1$ hexo deploy\nMore info: Deployment\n","dateCreated":"2018-01-23T19:12:24+08:00","dateModified":"2018-01-23T19:12:24+08:00","datePublished":"2018-01-23T19:12:24+08:00","description":"","headline":"Hello World","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://boringtu.com/uncategorized/hello-world/"},"publisher":{"@type":"Organization","name":"BoringTu","sameAs":[]},"url":"https://boringtu.com/uncategorized/hello-world/"}</script>
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"BoringTu","sameAs":["https://github.com/boringtu","https://demo.BoringTu.com","https://codefights.com/profile/boringtu","mailto:mail@Boringu.com"],"image":"head.jpeg"},"articleBody":"Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.\nQuick StartCreate a new post1$ hexo new \"My New Post\"\nMore info: Writing\nRun server1$ hexo server\nMore info: Server\nGenerate static files1$ hexo generate\nMore info: Generating\nDeploy to remote sites1$ hexo deploy\nMore info: Deployment\n","dateCreated":"2018-01-23T19:12:24+08:00","dateModified":"2018-01-23T19:12:24+08:00","datePublished":"2018-01-23T19:12:24+08:00","description":"","headline":"Hello World","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://boringtu.com/uncategorized/hello-world/"},"publisher":{"@type":"Organization","name":"BoringTu","sameAs":["https://github.com/boringtu","https://demo.BoringTu.com","https://codefights.com/profile/boringtu","mailto:mail@Boringu.com"],"image":"head.jpeg","logo":{"@type":"ImageObject","url":"head.jpeg"}},"url":"https://boringtu.com/uncategorized/hello-world/"}</script>
     <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Hello World">
@@ -27,6 +32,8 @@
     
         
     
+    
+        <meta property="og:image" content="https://boringtu.com/assets/images/head.jpeg"/>
     
     
     
@@ -45,6 +52,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -57,6 +68,8 @@
                 href="#about">
         
         
+            <img class="header-picture" src="/assets/images/head.jpeg" alt="作者的图片"/>
+        
         </a>
     
 </header>
@@ -64,8 +77,23 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/head.jpeg" alt="作者的图片"/>
+                </a>
+                <h4 class="sidebar-profile-name">BoringTu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>在通往全栈的路上，渐行渐远。。</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -75,11 +103,11 @@
                         <a  class="sidebar-button-link "
                              href="/ "
                             
-                            title="首页"
+                            title="Home"
                         >
                     
                         <i class="sidebar-button-icon fa fa-lg fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">首页</span>
+                        <span class="sidebar-button-desc">Home</span>
                     </a>
             </li>
             
@@ -88,11 +116,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-categories"
                             
-                            title="分类"
+                            title="Categories"
                         >
                     
                         <i class="sidebar-button-icon fa fa-lg fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">分类</span>
+                        <span class="sidebar-button-desc">Categories</span>
                     </a>
             </li>
             
@@ -101,11 +129,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-tags"
                             
-                            title="标签"
+                            title="Tags"
                         >
                     
                         <i class="sidebar-button-icon fa fa-lg fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">标签</span>
+                        <span class="sidebar-button-desc">Tags</span>
                     </a>
             </li>
             
@@ -114,11 +142,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-archives"
                             
-                            title="归档"
+                            title="Archives"
                         >
                     
                         <i class="sidebar-button-icon fa fa-lg fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">归档</span>
+                        <span class="sidebar-button-desc">Archives</span>
                     </a>
             </li>
             
@@ -127,11 +155,11 @@
                         <a  class="sidebar-button-link open-algolia-search"
                              href="#search"
                             
-                            title="搜索"
+                            title="Search.."
                         >
                     
                         <i class="sidebar-button-icon fa fa-lg fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">搜索</span>
+                        <span class="sidebar-button-desc">Search..</span>
                     </a>
             </li>
             
@@ -140,11 +168,11 @@
                         <a  class="sidebar-button-link "
                              href="#about"
                             
-                            title="关于"
+                            title="About"
                         >
                     
                         <i class="sidebar-button-icon fa fa-lg fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">关于</span>
+                        <span class="sidebar-button-desc">About</span>
                     </a>
             </li>
             
@@ -152,20 +180,39 @@
         
             <ul class="sidebar-buttons">
             
-        </ul>
-        
-            <ul class="sidebar-buttons">
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/boringtu" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link "
-                             href="/atom.xml"
-                            
-                            title="RSS"
-                        >
+                        <a  class="sidebar-button-link " href="https://demo.BoringTu.com" target="_blank" rel="noopener" title="Demo">
                     
-                        <i class="sidebar-button-icon fa fa-lg fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
+                        <i class="sidebar-button-icon fa fa-lg fa-laptop" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Demo</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://codefights.com/profile/boringtu" target="_blank" rel="noopener" title="CodeFights">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-code" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">CodeFights</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="mailto:mail@Boringu.com" target="_blank" rel="noopener" title="Email">
+                    
+                        <i class="sidebar-button-icon fa fa-lg fa-envelope-o" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Email</span>
                     </a>
             </li>
             
@@ -409,15 +456,21 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-remove"></i>
         </div>
         
+            <img id="about-card-picture" src="/assets/images/head.jpeg" alt="作者的图片"/>
+        
             <h4 id="about-card-name">BoringTu</h4>
         
-            <div id="about-card-bio"><p>author.bio</p>
+            <div id="about-card-bio"><p>在通往全栈的路上，渐行渐远。。</p>
 </div>
         
         
