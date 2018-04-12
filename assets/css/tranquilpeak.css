@@ -55,6 +55,10 @@ body #about #about-card {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; }
 
+#main {
+  background-image: url(/assets/images/pixels.png) !important;
+  background-repeat: repeat !important; }
+
 html {
   font-family: "Open Sans", sans-serif;
   font-size: 10px;
