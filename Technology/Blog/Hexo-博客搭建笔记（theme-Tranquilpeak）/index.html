@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="BoringTu">
-    <title>Hexo 博客搭建笔记（theme: Tranquilpeak） - BoringTu</title>
+    <title>Hexo 博客搭建笔记 - BoringTu</title>
     <meta name="author" content="BoringTu">
     
         <meta name="keywords" content="Blog,Hexo,Tranquilpeak,Gitment">
@@ -18,18 +18,18 @@
 				<link rel="icon" href="/assets/images/favicon.ico">
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"BoringTu","sameAs":["https://github.com/boringtu","https://demo.BoringTu.com","https://codefights.com/profile/boringtu","mailto:mail@Boringu.com","/resume/"],"image":"head.jpeg"},"articleBody":"写在前面：\n\n本人是以hexo + hexo-theme-tranquilpeak为基础搭建的博客，所以如果您套用的theme不是tranquilpeak，也许不太适合您，请摘对您有用的部分看；\n关于hexo以及hexo-theme-tranquilpeak的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。\n\n\n评论系统（Gitment）废话可忽略：本来很想用disqus的，风格啥的都很喜欢，但毕竟在国内的盆友只能通过科学上网才能成功加载，虽然我的博客受众群体不会科学上网有点说不过去。。但。。我真的见过很多很多程序猴不会的。。甚是无奈。退而求其次，感觉就Gitment比较适合了。（如果你身为一个程序猴，连GitHub账号都没有。。可以。。考虑。。转行了。。吧。。囧rz）\n配置配置文件：1blog/themes/tranquilpeak/_config.yml\n配置案例：12345678910111213# Your Gitment information# Read https://github.com/imsun/gitment#get-started to setup Gitmentgitment:    # Switch    enable: true    # Your Github ID (Github username):    github_id: boringtu    # The repo to store comments:    repo: boringtu.github.io    # Your client ID:    client_id: *******************    # Your client secret:    client_secret: ***************************************\n解读：\n\nenable要改成true（这不废话么。。）\ngithub_id自然就是字面意思，就是你的GitHub的ID\nclient_id与client_secret是在GitHub提供的New OAuth Application页面成功注册之后得到的\n\n各种Error1. Error: Not Found如果你确定你的github_id没写错，那么肯定就是repo写错了。我当时就是犯了这个错误。拿我现在这个博客为例，我曾在repo这里试过：\n\nhttps://github.com/boringtu/boringtu.github.io\ngit@github.com:boringtu/boringtu.github.io.git都不行，后来网上搜了半天搜到了Gitment关于这个问题的issue，发现repo只需要配成项目名就好了，比如：boringtu.github.io。\n\n2. Error: Comments Not Initialized每篇文章刚创建好deploy之后，评论区都会有这个提示，这是正常的，只要Login了就会看到让你初始化评论区的按钮，戳它就可以了。（前提是在你注册OAuth Application的时候，callback URL没写错~）\n3. Error：validation failed这个问题的出现，99%是因为id太长，hexo以及tranquilpeak的默认配置都是id: 文章标题，比如tranquilpeak：1themes/tranquilpeak/layout/_partial/script.ejs\n123...id: &apos;&lt;%= post.permalink %&gt;&apos;...\n文章标题这个不方便也没有道理限制长度，所以我们可以把id改成其他的，比如很多人推荐的改成文章日期：123...id: &apos;&lt;%= post.date %&gt;&apos;...\n注意：如果这样配置的话，建议最好所有文章的date都精确到秒以下，毕竟Gitment是根据这个id来区分文章的。\n零碎的各种配置References\n(GitHub Documentation) - Tranquilpeak\n(GitHub Documentation) - Gitment\n(GitHub Issue - Gitment) Error: Not Found\n(GitHub Issue - Gitment) Error: Validation Failed\n\n","dateCreated":"2018-04-10T14:00:00+08:00","dateModified":"2018-04-13T14:57:27+08:00","datePublished":"2018-04-10T14:00:00+08:00","description":"写在前面：\n\n本人是以hexo + hexo-theme-tranquilpeak为基础搭建的博客，所以如果您套用的theme不是tranquilpeak，也许不太适合您，请摘对您有用的部分看；\n关于hexo以及hexo-theme-tranquilpeak的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。\n","headline":"Hexo 博客搭建笔记（theme: Tranquilpeak）","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/"},"publisher":{"@type":"Organization","name":"BoringTu","sameAs":["https://github.com/boringtu","https://demo.BoringTu.com","https://codefights.com/profile/boringtu","mailto:mail@Boringu.com","/resume/"],"image":"head.jpeg","logo":{"@type":"ImageObject","url":"head.jpeg"}},"url":"https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/","keywords":"Technology, Blog, Hexo, Tranquilpeak, Gitment"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"BoringTu","sameAs":["https://github.com/boringtu","https://demo.BoringTu.com","https://codefights.com/profile/boringtu","mailto:mail@Boringu.com","/resume/"],"image":"head.jpeg"},"articleBody":"\n写在前面：\n\n本人是以hexo + hexo-theme-tranquilpeak为基础搭建的博客，所以如果您套用的theme不是tranquilpeak，也许不太适合您，请摘对您有用的部分看；\n关于hexo以及hexo-theme-tranquilpeak的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。\n\n\n目录系统Tranquilpeak已经内置目录功能了，只需要在文章里指定位置写一句&lt;!-- toc --&gt;就可以了。\nmore &amp; excerpt&lt;!-- more --&gt;与&lt;!-- excerpt --&gt;的区别\n共同点都是文章开头到标记位置之间的内容显示在主页上\n不同点\n&lt;!-- more --&gt;: 文章正文正常显示（包括标记之前和之后的内容）\n&lt;!-- excerpt --&gt;: 文章正文会忽略文章开头一直到标记处的内容\n\n评论系统（Gitment）废话可忽略：本来很想用disqus的，风格啥的都很喜欢，但毕竟在国内的盆友只能通过科学上网才能成功加载，虽然我的博客受众群体不会科学上网有点说不过去。。但。。我真的见过很多很多程序猴不会的。。甚是无奈。退而求其次，感觉就Gitment比较适合了。（如果你身为一个程序猴，连GitHub账号都没有。。可以。。考虑。。转行了。。吧。。囧rz）\n配置配置文件：1blog/themes/tranquilpeak/_config.yml\n配置案例：12345678910111213# Your Gitment information# Read https://github.com/imsun/gitment#get-started to setup Gitmentgitment:    # Switch    enable: true    # Your Github ID (Github username):    github_id: boringtu    # The repo to store comments:    repo: boringtu.github.io    # Your client ID:    client_id: *******************    # Your client secret:    client_secret: ***************************************\n解读：\n\nenable要改成true（这不废话么。。）\ngithub_id自然就是字面意思，就是你的GitHub的ID\nclient_id与client_secret是在GitHub提供的New OAuth Application页面成功注册之后得到的\n\n各种ErrorError: Not Found如果你确定你的github_id没写错，那么肯定就是repo写错了。我当时就是犯了这个错误。拿我现在这个博客为例，我曾在repo这里试过：\n\nhttps://github.com/boringtu/boringtu.github.io\ngit@github.com:boringtu/boringtu.github.io.git都不行，后来网上搜了半天搜到了Gitment关于这个问题的issue，发现repo只需要配成项目名就好了，比如：boringtu.github.io。\n\nError: Comments Not Initialized每篇文章刚创建好deploy之后，评论区都会有这个提示，这是正常的，只要Login了就会看到让你初始化评论区的按钮，戳它就可以了。（前提是在你注册OAuth Application的时候，callback URL没写错~）\nError：validation failed这个问题的出现，99%是因为id太长，hexo以及tranquilpeak的默认配置都是id: 文章标题，比如tranquilpeak：1blog/themes/tranquilpeak/layout/_partial/script.ejs\n123...id: &apos;&lt;%= post.permalink %&gt;&apos;...\n文章标题这个不方便也没有道理限制长度，所以我们可以把id改成其他的，比如很多人推荐的改成文章日期：123...id: &apos;&lt;%= post.date %&gt;&apos;...\n注意：如果这样配置的话，建议最好所有文章的date都精确到秒以下，毕竟Gitment是根据这个id来区分文章的。\n零碎的各种配置订制css文件位置1blog/themes/tranquilpeak/source/_css/themes/_hljs-custom.scss\n但本人是缩进党，而且并不是很喜欢{}这种，所以相比scss我更喜欢sass，然后就把这个文件名改成了：_hljs-custom.sass放心改，没问题的，毕竟sass和scss是本家，而且引入这些文件的地方也没有强调后缀名。详见：1blog/themes/tranquilpeak/source/_css/tranquilpeak.scss\n再之后样式上想改些什么的话，只要有点前端基础，就都不是问题了，想咋改都成~\nReferences\n(GitHub Documentation) - Tranquilpeak\n(GitHub Documentation) - Gitment\n(GitHub Issue - Gitment) Error: Not Found\n(GitHub Issue - Gitment) Error: Validation Failed\n\n","dateCreated":"2018-04-10T14:00:00+08:00","dateModified":"2018-04-13T17:13:10+08:00","datePublished":"2018-04-10T14:00:00+08:00","description":"\n写在前面：\n\n本人是以hexo + hexo-theme-tranquilpeak为基础搭建的博客，所以如果您套用的theme不是tranquilpeak，也许不太适合您，请摘对您有用的部分看；\n关于hexo以及hexo-theme-tranquilpeak的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。\n","headline":"Hexo 博客搭建笔记","image":["hexo-logo.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/"},"publisher":{"@type":"Organization","name":"BoringTu","sameAs":["https://github.com/boringtu","https://demo.BoringTu.com","https://codefights.com/profile/boringtu","mailto:mail@Boringu.com","/resume/"],"image":"head.jpeg","logo":{"@type":"ImageObject","url":"head.jpeg"}},"url":"https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/","keywords":"Technology, Blog, Hexo, Tranquilpeak, Gitment","thumbnailUrl":"hexo-logo.png"}</script>
     <meta name="description" content="写在前面：  本人是以hexo + hexo-theme-tranquilpeak为基础搭建的博客，所以如果您套用的theme不是tranquilpeak，也许不太适合您，请摘对您有用的部分看； 关于hexo以及hexo-theme-tranquilpeak的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。">
 <meta name="keywords" content="Blog,Hexo,Tranquilpeak,Gitment">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Hexo 博客搭建笔记（theme: Tranquilpeak）">
+<meta property="og:title" content="Hexo 博客搭建笔记">
 <meta property="og:url" content="https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/index.html">
 <meta property="og:site_name" content="BoringTu">
 <meta property="og:description" content="写在前面：  本人是以hexo + hexo-theme-tranquilpeak为基础搭建的博客，所以如果您套用的theme不是tranquilpeak，也许不太适合您，请摘对您有用的部分看； 关于hexo以及hexo-theme-tranquilpeak的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-04-13T06:57:27.693Z">
+<meta property="og:updated_time" content="2018-04-13T09:13:10.676Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo 博客搭建笔记（theme: Tranquilpeak）">
+<meta name="twitter:title" content="Hexo 博客搭建笔记">
 <meta name="twitter:description" content="写在前面：  本人是以hexo + hexo-theme-tranquilpeak为基础搭建的博客，所以如果您套用的theme不是tranquilpeak，也许不太适合您，请摘对您有用的部分看； 关于hexo以及hexo-theme-tranquilpeak的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。">
     
     
@@ -39,10 +39,13 @@
         <meta property="og:image" content="https://boringtu.com/assets/images/head.jpeg"/>
     
     
+        <meta property="og:image" content="https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/hexo-logo.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/hexo-logo.png" />
+    
     
     
     <!--STYLES-->
-    <link rel="stylesheet" href="/assets/css/style-apyuelajbtyohkhebwxgwtokpy8pswqjfjkm3eq8z3vxqbxjc8dp5201hcrj.min.css">
+    <link rel="stylesheet" href="/assets/css/style-6742et8umwvne4vk2mq3croilwfn6fkdgigzxldgvlrgxn4pvgzoymy7k9ye.min.css">
     <!--STYLES END-->
     
 
@@ -262,7 +265,13 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Hexo 博客搭建笔记（theme: Tranquilpeak）
+						<span class="article-title">
+            Hexo 博客搭建笔记
+						</span>
+					
+						<br>
+						<span class="article-subtitle">(theme: Tranquilpeak)</p>
+					
         </h1>
     
     
@@ -288,12 +297,20 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p><em><strong>写在前面</strong>：</em></p>
+            <h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录系统"><span class="toc-text">目录系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#more-amp-excerpt"><span class="toc-text">more &amp; excerpt</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#共同点"><span class="toc-text">共同点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不同点"><span class="toc-text">不同点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#评论系统（Gitment）"><span class="toc-text">评论系统（Gitment）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#各种Error"><span class="toc-text">各种Error</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Error-Not-Found"><span class="toc-text">Error: Not Found</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Error-Comments-Not-Initialized"><span class="toc-text">Error: Comments Not Initialized</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Error：validation-failed"><span class="toc-text">Error：validation failed</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#零碎的各种配置"><span class="toc-text">零碎的各种配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#订制css文件位置"><span class="toc-text">订制css文件位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol>
+<p><em><strong>写在前面</strong>：</em></p>
 <ul>
 <li><em>本人是以<code>hexo + hexo-theme-tranquilpeak</code>为基础搭建的博客，所以如果您套用的<code>theme</code>不是<code>tranquilpeak</code>，也许不太适合您，请摘对您有用的部分看；</em></li>
 <li><em>关于<code>hexo</code>以及<code>hexo-theme-tranquilpeak</code>的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。</em></li>
 </ul>
 <a id="more"></a>
+<h2 id="目录系统"><a href="#目录系统" class="headerlink" title="目录系统"></a>目录系统</h2><p><code>Tranquilpeak</code>已经内置目录功能了，只需要在文章里指定位置写一句<code>&lt;!-- toc --&gt;</code>就可以了。</p>
+<h2 id="more-amp-excerpt"><a href="#more-amp-excerpt" class="headerlink" title="more &amp; excerpt"></a>more &amp; excerpt</h2><p><code>&lt;!-- more --&gt;</code>与<code>&lt;!-- excerpt --&gt;</code>的区别</p>
+<h3 id="共同点"><a href="#共同点" class="headerlink" title="共同点"></a>共同点</h3><p>都是文章开头到标记位置之间的内容显示在主页上</p>
+<h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h3><ul>
+<li><code>&lt;!-- more --&gt;</code>: 文章正文正常显示（包括标记之前和之后的内容）</li>
+<li><code>&lt;!-- excerpt --&gt;</code>: 文章正文会忽略文章开头一直到标记处的内容</li>
+</ul>
 <h2 id="评论系统（Gitment）"><a href="#评论系统（Gitment）" class="headerlink" title="评论系统（Gitment）"></a>评论系统（Gitment）</h2><p><em>废话可忽略：本来很想用<code>disqus</code>的，风格啥的都很喜欢，但毕竟在国内的盆友只能通过科学上网才能成功加载，虽然我的博客受众群体不会科学上网有点说不过去。。但。。我真的见过很多很多程序猴不会的。。甚是无奈。退而求其次，感觉就<code>Gitment</code>比较适合了。（如果你身为一个程序猴，连<code>GitHub</code>账号都没有。。可以。。考虑。。转行了。。吧。。囧rz）</em></p>
 <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>配置文件：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blog/themes/tranquilpeak/_config.yml</span><br></pre></td></tr></table></figure></p>
 <p>配置案例：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Your Gitment information</span></span><br><span class="line"><span class="comment"># Read https://github.com/imsun/gitment#get-started to setup Gitment</span></span><br><span class="line"><span class="attr">gitment:</span></span><br><span class="line">    <span class="comment"># Switch</span></span><br><span class="line"><span class="attr">    enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Your Github ID (Github username):</span></span><br><span class="line"><span class="attr">    github_id:</span> <span class="string">boringtu</span></span><br><span class="line">    <span class="comment"># The repo to store comments:</span></span><br><span class="line"><span class="attr">    repo:</span> <span class="string">boringtu.github.io</span></span><br><span class="line">    <span class="comment"># Your client ID:</span></span><br><span class="line"><span class="attr">    client_id:</span> <span class="string">*******************</span></span><br><span class="line">    <span class="comment"># Your client secret:</span></span><br><span class="line"><span class="attr">    client_secret:</span> <span class="string">***************************************</span></span><br></pre></td></tr></table></figure></p>
@@ -303,17 +320,20 @@
 <li><code>github_id</code>自然就是字面意思，就是你的<code>GitHub</code>的<code>ID</code></li>
 <li><code>client_id</code>与<code>client_secret</code>是在<code>GitHub</code>提供的<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">New OAuth Application</a>页面成功注册之后得到的</li>
 </ul>
-<h3 id="各种Error"><a href="#各种Error" class="headerlink" title="各种Error"></a>各种<code>Error</code></h3><h4 id="1-Error-Not-Found"><a href="#1-Error-Not-Found" class="headerlink" title="1. Error: Not Found"></a>1. Error: Not Found</h4><p>如果你确定你的<code>github_id</code>没写错，那么肯定就是<code>repo</code>写错了。我当时就是犯了这个错误。<br>拿我现在这个博客为例，我曾在<code>repo</code>这里试过：</p>
+<h3 id="各种Error"><a href="#各种Error" class="headerlink" title="各种Error"></a>各种<code>Error</code></h3><h4 id="Error-Not-Found"><a href="#Error-Not-Found" class="headerlink" title="Error: Not Found"></a>Error: Not Found</h4><p>如果你确定你的<code>github_id</code>没写错，那么肯定就是<code>repo</code>写错了。我当时就是犯了这个错误。<br>拿我现在这个博客为例，我曾在<code>repo</code>这里试过：</p>
 <ul>
 <li><a href="https://github.com/boringtu/boringtu.github.io" target="_blank" rel="noopener">https://github.com/boringtu/boringtu.github.io</a></li>
 <li>git@github.com:boringtu/boringtu.github.io.git<br>都不行，后来网上搜了半天搜到了<code>Gitment</code>关于这个问题的<a href="https://github.com/imsun/gitment/issues/18" target="_blank" rel="noopener">issue</a>，发现<code>repo</code>只需要配成项目名就好了，比如：<code>boringtu.github.io</code>。</li>
 </ul>
-<h4 id="2-Error-Comments-Not-Initialized"><a href="#2-Error-Comments-Not-Initialized" class="headerlink" title="2. Error: Comments Not Initialized"></a>2. Error: Comments Not Initialized</h4><p>每篇文章刚创建好<code>deploy</code>之后，评论区都会有这个提示，这是正常的，只要<code>Login</code>了就会看到让你初始化评论区的按钮，戳它就可以了。（前提是在你注册<code>OAuth Application</code>的时候，<code>callback URL</code>没写错~）</p>
-<h4 id="3-Error：validation-failed"><a href="#3-Error：validation-failed" class="headerlink" title="3. Error：validation failed"></a>3. Error：validation failed</h4><p>这个问题的出现，<code>99%</code>是因为<code>id</code>太长，<code>hexo</code>以及<code>tranquilpeak</code>的默认配置都是<code>id: 文章标题</code>，比如<code>tranquilpeak</code>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">themes/tranquilpeak/layout/_partial/script.ejs</span><br></pre></td></tr></table></figure></p>
+<h4 id="Error-Comments-Not-Initialized"><a href="#Error-Comments-Not-Initialized" class="headerlink" title="Error: Comments Not Initialized"></a>Error: Comments Not Initialized</h4><p>每篇文章刚创建好<code>deploy</code>之后，评论区都会有这个提示，这是正常的，只要<code>Login</code>了就会看到让你初始化评论区的按钮，戳它就可以了。（前提是在你注册<code>OAuth Application</code>的时候，<code>callback URL</code>没写错~）</p>
+<h4 id="Error：validation-failed"><a href="#Error：validation-failed" class="headerlink" title="Error：validation failed"></a>Error：validation failed</h4><p>这个问题的出现，<code>99%</code>是因为<code>id</code>太长，<code>hexo</code>以及<code>tranquilpeak</code>的默认配置都是<code>id: 文章标题</code>，比如<code>tranquilpeak</code>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blog/themes/tranquilpeak/layout/_partial/script.ejs</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">id: &apos;&lt;%= post.permalink %&gt;&apos;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>文章标题这个不方便也没有道理限制长度，所以我们可以把<code>id</code>改成其他的，比如很多人推荐的改成<code>文章日期</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">id: &apos;&lt;%= post.date %&gt;&apos;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
 <p><strong>注意：如果这样配置的话，建议最好所有文章的<code>date</code>都精确到<code>秒</code>以下，毕竟<code>Gitment</code>是根据这个<code>id</code>来区分文章的。</strong></p>
-<h2 id="零碎的各种配置"><a href="#零碎的各种配置" class="headerlink" title="零碎的各种配置"></a>零碎的各种配置</h2><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<h2 id="零碎的各种配置"><a href="#零碎的各种配置" class="headerlink" title="零碎的各种配置"></a>零碎的各种配置</h2><h3 id="订制css文件位置"><a href="#订制css文件位置" class="headerlink" title="订制css文件位置"></a>订制css文件位置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blog/themes/tranquilpeak/source/_css/themes/_hljs-custom.scss</span><br></pre></td></tr></table></figure>
+<p>但本人是<code>缩进党</code>，而且并不是很喜欢<code>{}</code>这种，所以相比<code>scss</code>我更喜欢<code>sass</code>，然后就把这个文件名改成了：<code>_hljs-custom.sass</code><br><em>放心改，没问题的，毕竟<code>sass</code>和<code>scss</code>是本家，而且引入这些文件的地方也没有强调后缀名。</em><br>详见：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blog/themes/tranquilpeak/source/_css/tranquilpeak.scss</span><br></pre></td></tr></table></figure></p>
+<p>再之后样式上想改些什么的话，只要有点前端基础，就都不是问题了，想咋改都成~</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
 <li><a href="https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak/blob/master/DOCUMENTATION.md" target="_blank" rel="noopener">(GitHub Documentation) - Tranquilpeak</a></li>
 <li><a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">(GitHub Documentation) - Gitment</a></li>
 <li><a href="https://github.com/imsun/gitment/issues/18" target="_blank" rel="noopener">(GitHub Issue - Gitment) Error: Not Found</a></li>
@@ -390,7 +410,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="目录">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -475,7 +495,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="目录">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -619,9 +639,15 @@
                 
                 <div class="media">
                     
+                    <div class="media-left">
+                        <a class="link-unstyled" href="https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/">
+                            <img class="media-image" src="https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/hexo-logo.png" width="90" height="90"/>
+                        </a>
+                    </div>
+                    
                     <div class="media-body">
                         <a class="link-unstyled" href="https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/">
-                            <h3 class="media-heading">Hexo 博客搭建笔记（theme: Tranquilpeak）</h3>
+                            <h3 class="media-heading">Hexo 博客搭建笔记</h3>
                         </a>
                         <span class="media-meta">
                             <span class="media-date text-small">
@@ -630,7 +656,8 @@
                                 
                             </span>
                         </span>
-                        <div class="media-content hide-xs font-merryweather"><p><em><strong>写在前面</strong>：</em></p>
+                        <div class="media-content hide-xs font-merryweather"><!-- toc -->
+<p><em><strong>写在前面</strong>：</em></p>
 <ul>
 <li><em>本人是以<code>hexo + hexo-theme-tranquilpeak</code>为基础搭建的博客，所以如果您套用的<code>theme</code>不是<code>tranquilpeak</code>，也许不太适合您，请摘对您有用的部分看；</em></li>
 <li><em>关于<code>hexo</code>以及<code>hexo-theme-tranquilpeak</code>的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。</em></li>
@@ -657,7 +684,7 @@
         
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
-<script src="/assets/js/script-fnmxgtxucx6kdugli7wndsebq8km3i2xzypycm0cpwes4agckifdumdpg7bm.min.js"></script>
+<script src="/assets/js/script-upo7dhvugyhiag4iyjhsgs50pkivd0hg8wh9aptichahbald5nbckkovsdft.min.js"></script>
 <!--SCRIPTS END-->
 
     
