@@ -6,8 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="BoringTu">
-    <title>Nginx 学习笔记 - BoringTu</title>
+    <title>Hexo 博客搭建笔记（theme: Tranquilpeak） - BoringTu</title>
     <meta name="author" content="BoringTu">
+    
+        <meta name="keywords" content="Blog,Hexo,Tranquilpeak,Gitment">
     
     
 				<!--
@@ -16,19 +18,19 @@
 				<link rel="icon" href="/assets/images/favicon.ico">
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"BoringTu","sameAs":["https://github.com/boringtu","https://demo.BoringTu.com","https://codefights.com/profile/boringtu","mailto:mail@Boringu.com","/resume/"],"image":"head.jpeg"},"articleBody":"配置文件位置:1/usr/local/etc/nginx/nginx.conf\n\n\nnginx 启动 nginx 服务\nnginx -s stop 快速关闭Nginx，可能不保存相关信息，并迅速终止web服务。\nnginx -s quit 平稳关闭Nginx，保存相关信息，有安排的结束web服务。\nnginx -s reload 因改变了Nginx相关配置，需要重新加载配置而重载。\nnginx -s reopen 重新打开日志文件。\nnginx -c filename 为 Nginx 指定一个配置文件，来代替缺省的。\nnginx -t 不运行，而仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。\nnginx -v 显示 nginx 的版本。\nnginx -V 显示 nginx 的版本，编译器版本和配置参数。\n\n","dateCreated":"2017-08-31T00:00:00+08:00","dateModified":"2018-04-13T14:57:00+08:00","datePublished":"2017-08-31T00:00:00+08:00","description":"配置文件位置:1/usr/local/etc/nginx/nginx.conf","headline":"Nginx 学习笔记","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://boringtu.com/Technology/O-M/Nginx/Nginx-学习笔记/"},"publisher":{"@type":"Organization","name":"BoringTu","sameAs":["https://github.com/boringtu","https://demo.BoringTu.com","https://codefights.com/profile/boringtu","mailto:mail@Boringu.com","/resume/"],"image":"head.jpeg","logo":{"@type":"ImageObject","url":"head.jpeg"}},"url":"https://boringtu.com/Technology/O-M/Nginx/Nginx-学习笔记/","keywords":"Technology, O & M, Nginx"}</script>
-    <meta name="description" content="配置文件位置:1/usr/local/etc/nginx/nginx.conf">
-<meta name="keywords" content="Technology,O &amp; M,Nginx">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"BoringTu","sameAs":["https://github.com/boringtu","https://demo.BoringTu.com","https://codefights.com/profile/boringtu","mailto:mail@Boringu.com","/resume/"],"image":"head.jpeg"},"articleBody":"写在前面：\n\n本人是以hexo + hexo-theme-tranquilpeak为基础搭建的博客，所以如果您套用的theme不是tranquilpeak，也许不太适合您，请摘对您有用的部分看；\n关于hexo以及hexo-theme-tranquilpeak的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。\n\n\n评论系统（Gitment）废话可忽略：本来很想用disqus的，风格啥的都很喜欢，但毕竟在国内的盆友只能通过科学上网才能成功加载，虽然我的博客受众群体不会科学上网有点说不过去。。但。。我真的见过很多很多程序猴不会的。。甚是无奈。退而求其次，感觉就Gitment比较适合了。（如果你身为一个程序猴，连GitHub账号都没有。。可以。。考虑。。转行了。。吧。。囧rz）\n配置配置文件：1blog/themes/tranquilpeak/_config.yml\n配置案例：12345678910111213# Your Gitment information# Read https://github.com/imsun/gitment#get-started to setup Gitmentgitment:    # Switch    enable: true    # Your Github ID (Github username):    github_id: boringtu    # The repo to store comments:    repo: boringtu.github.io    # Your client ID:    client_id: *******************    # Your client secret:    client_secret: ***************************************\n解读：\n\nenable要改成true（这不废话么。。）\ngithub_id自然就是字面意思，就是你的GitHub的ID\nclient_id与client_secret是在GitHub提供的New OAuth Application页面成功注册之后得到的\n\n各种Error1. Error: Not Found如果你确定你的github_id没写错，那么肯定就是repo写错了。我当时就是犯了这个错误。拿我现在这个博客为例，我曾在repo这里试过：\n\nhttps://github.com/boringtu/boringtu.github.io\ngit@github.com:boringtu/boringtu.github.io.git都不行，后来网上搜了半天搜到了Gitment关于这个问题的issue，发现repo只需要配成项目名就好了，比如：boringtu.github.io。\n\n2. Error: Comments Not Initialized每篇文章刚创建好deploy之后，评论区都会有这个提示，这是正常的，只要Login了就会看到让你初始化评论区的按钮，戳它就可以了。（前提是在你注册OAuth Application的时候，callback URL没写错~）\n3. Error：validation failed这个问题的出现，99%是因为id太长，hexo以及tranquilpeak的默认配置都是id: 文章标题，比如tranquilpeak：1themes/tranquilpeak/layout/_partial/script.ejs\n123...id: &apos;&lt;%= post.permalink %&gt;&apos;...\n文章标题这个不方便也没有道理限制长度，所以我们可以把id改成其他的，比如很多人推荐的改成文章日期：123...id: &apos;&lt;%= post.date %&gt;&apos;...\n注意：如果这样配置的话，建议最好所有文章的date都精确到秒以下，毕竟Gitment是根据这个id来区分文章的。\n零碎的各种配置References\n(GitHub Documentation) - Tranquilpeak\n(GitHub Documentation) - Gitment\n(GitHub Issue - Gitment) Error: Not Found\n(GitHub Issue - Gitment) Error: Validation Failed\n\n","dateCreated":"2018-04-10T14:00:00+08:00","dateModified":"2018-04-13T14:57:27+08:00","datePublished":"2018-04-10T14:00:00+08:00","description":"写在前面：\n\n本人是以hexo + hexo-theme-tranquilpeak为基础搭建的博客，所以如果您套用的theme不是tranquilpeak，也许不太适合您，请摘对您有用的部分看；\n关于hexo以及hexo-theme-tranquilpeak的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。\n","headline":"Hexo 博客搭建笔记（theme: Tranquilpeak）","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/"},"publisher":{"@type":"Organization","name":"BoringTu","sameAs":["https://github.com/boringtu","https://demo.BoringTu.com","https://codefights.com/profile/boringtu","mailto:mail@Boringu.com","/resume/"],"image":"head.jpeg","logo":{"@type":"ImageObject","url":"head.jpeg"}},"url":"https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/","keywords":"Technology, Blog, Hexo, Tranquilpeak, Gitment"}</script>
+    <meta name="description" content="写在前面：  本人是以hexo + hexo-theme-tranquilpeak为基础搭建的博客，所以如果您套用的theme不是tranquilpeak，也许不太适合您，请摘对您有用的部分看； 关于hexo以及hexo-theme-tranquilpeak的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。">
+<meta name="keywords" content="Blog,Hexo,Tranquilpeak,Gitment">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Nginx 学习笔记">
-<meta property="og:url" content="https://boringtu.com/Technology/O-M/Nginx/Nginx-学习笔记/index.html">
+<meta property="og:title" content="Hexo 博客搭建笔记（theme: Tranquilpeak）">
+<meta property="og:url" content="https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/index.html">
 <meta property="og:site_name" content="BoringTu">
-<meta property="og:description" content="配置文件位置:1/usr/local/etc/nginx/nginx.conf">
+<meta property="og:description" content="写在前面：  本人是以hexo + hexo-theme-tranquilpeak为基础搭建的博客，所以如果您套用的theme不是tranquilpeak，也许不太适合您，请摘对您有用的部分看； 关于hexo以及hexo-theme-tranquilpeak的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-04-13T06:57:00.354Z">
+<meta property="og:updated_time" content="2018-04-13T06:57:27.693Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nginx 学习笔记">
-<meta name="twitter:description" content="配置文件位置:1/usr/local/etc/nginx/nginx.conf">
+<meta name="twitter:title" content="Hexo 博客搭建笔记（theme: Tranquilpeak）">
+<meta name="twitter:description" content="写在前面：  本人是以hexo + hexo-theme-tranquilpeak为基础搭建的博客，所以如果您套用的theme不是tranquilpeak，也许不太适合您，请摘对您有用的部分看； 关于hexo以及hexo-theme-tranquilpeak的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。">
     
     
         
@@ -260,21 +262,21 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Nginx 学习笔记
+            Hexo 博客搭建笔记（theme: Tranquilpeak）
         </h1>
     
     
         <div class="post-meta">
 
-	<time datetime="2017-08-31T00:00:00+08:00">
+	<time datetime="2018-04-10T14:00:00+08:00">
 
-	Aug 31st, 2017
+	Apr 10th, 2018
 
 	</time>
 
 	<span>发布在 </span>
 	
-    <a class="category-link" href="/categories/Technology/">Technology</a>, <a class="category-link" href="/categories/Technology/O-M/">O & M</a>, <a class="category-link" href="/categories/Technology/O-M/Nginx/">Nginx</a>
+    <a class="category-link" href="/categories/Technology/">Technology</a>, <a class="category-link" href="/categories/Technology/Blog/">Blog</a>
 
 
 
@@ -286,18 +288,36 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>配置文件位置:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>
+            <p><em><strong>写在前面</strong>：</em></p>
 <ul>
-<li>nginx 启动 nginx 服务</li>
-<li>nginx -s stop 快速关闭Nginx，可能不保存相关信息，并迅速终止web服务。</li>
-<li>nginx -s quit 平稳关闭Nginx，保存相关信息，有安排的结束web服务。</li>
-<li>nginx -s reload 因改变了Nginx相关配置，需要重新加载配置而重载。</li>
-<li>nginx -s reopen 重新打开日志文件。</li>
-<li>nginx -c filename 为 Nginx 指定一个配置文件，来代替缺省的。</li>
-<li>nginx -t 不运行，而仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。</li>
-<li>nginx -v 显示 nginx 的版本。</li>
-<li>nginx -V 显示 nginx 的版本，编译器版本和配置参数。</li>
+<li><em>本人是以<code>hexo + hexo-theme-tranquilpeak</code>为基础搭建的博客，所以如果您套用的<code>theme</code>不是<code>tranquilpeak</code>，也许不太适合您，请摘对您有用的部分看；</em></li>
+<li><em>关于<code>hexo</code>以及<code>hexo-theme-tranquilpeak</code>的搭建，其实就看官方文档基本就足够了，我这里只记录了本人搭建过程中踩过的坑。</em></li>
+</ul>
+<a id="more"></a>
+<h2 id="评论系统（Gitment）"><a href="#评论系统（Gitment）" class="headerlink" title="评论系统（Gitment）"></a>评论系统（Gitment）</h2><p><em>废话可忽略：本来很想用<code>disqus</code>的，风格啥的都很喜欢，但毕竟在国内的盆友只能通过科学上网才能成功加载，虽然我的博客受众群体不会科学上网有点说不过去。。但。。我真的见过很多很多程序猴不会的。。甚是无奈。退而求其次，感觉就<code>Gitment</code>比较适合了。（如果你身为一个程序猴，连<code>GitHub</code>账号都没有。。可以。。考虑。。转行了。。吧。。囧rz）</em></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>配置文件：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blog/themes/tranquilpeak/_config.yml</span><br></pre></td></tr></table></figure></p>
+<p>配置案例：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Your Gitment information</span></span><br><span class="line"><span class="comment"># Read https://github.com/imsun/gitment#get-started to setup Gitment</span></span><br><span class="line"><span class="attr">gitment:</span></span><br><span class="line">    <span class="comment"># Switch</span></span><br><span class="line"><span class="attr">    enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Your Github ID (Github username):</span></span><br><span class="line"><span class="attr">    github_id:</span> <span class="string">boringtu</span></span><br><span class="line">    <span class="comment"># The repo to store comments:</span></span><br><span class="line"><span class="attr">    repo:</span> <span class="string">boringtu.github.io</span></span><br><span class="line">    <span class="comment"># Your client ID:</span></span><br><span class="line"><span class="attr">    client_id:</span> <span class="string">*******************</span></span><br><span class="line">    <span class="comment"># Your client secret:</span></span><br><span class="line"><span class="attr">    client_secret:</span> <span class="string">***************************************</span></span><br></pre></td></tr></table></figure></p>
+<p>解读：</p>
+<ul>
+<li><code>enable</code>要改成<code>true</code>（这不废话么。。）</li>
+<li><code>github_id</code>自然就是字面意思，就是你的<code>GitHub</code>的<code>ID</code></li>
+<li><code>client_id</code>与<code>client_secret</code>是在<code>GitHub</code>提供的<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">New OAuth Application</a>页面成功注册之后得到的</li>
+</ul>
+<h3 id="各种Error"><a href="#各种Error" class="headerlink" title="各种Error"></a>各种<code>Error</code></h3><h4 id="1-Error-Not-Found"><a href="#1-Error-Not-Found" class="headerlink" title="1. Error: Not Found"></a>1. Error: Not Found</h4><p>如果你确定你的<code>github_id</code>没写错，那么肯定就是<code>repo</code>写错了。我当时就是犯了这个错误。<br>拿我现在这个博客为例，我曾在<code>repo</code>这里试过：</p>
+<ul>
+<li><a href="https://github.com/boringtu/boringtu.github.io" target="_blank" rel="noopener">https://github.com/boringtu/boringtu.github.io</a></li>
+<li>git@github.com:boringtu/boringtu.github.io.git<br>都不行，后来网上搜了半天搜到了<code>Gitment</code>关于这个问题的<a href="https://github.com/imsun/gitment/issues/18" target="_blank" rel="noopener">issue</a>，发现<code>repo</code>只需要配成项目名就好了，比如：<code>boringtu.github.io</code>。</li>
+</ul>
+<h4 id="2-Error-Comments-Not-Initialized"><a href="#2-Error-Comments-Not-Initialized" class="headerlink" title="2. Error: Comments Not Initialized"></a>2. Error: Comments Not Initialized</h4><p>每篇文章刚创建好<code>deploy</code>之后，评论区都会有这个提示，这是正常的，只要<code>Login</code>了就会看到让你初始化评论区的按钮，戳它就可以了。（前提是在你注册<code>OAuth Application</code>的时候，<code>callback URL</code>没写错~）</p>
+<h4 id="3-Error：validation-failed"><a href="#3-Error：validation-failed" class="headerlink" title="3. Error：validation failed"></a>3. Error：validation failed</h4><p>这个问题的出现，<code>99%</code>是因为<code>id</code>太长，<code>hexo</code>以及<code>tranquilpeak</code>的默认配置都是<code>id: 文章标题</code>，比如<code>tranquilpeak</code>：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">themes/tranquilpeak/layout/_partial/script.ejs</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">id: &apos;&lt;%= post.permalink %&gt;&apos;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>文章标题这个不方便也没有道理限制长度，所以我们可以把<code>id</code>改成其他的，比如很多人推荐的改成<code>文章日期</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">id: &apos;&lt;%= post.date %&gt;&apos;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：如果这样配置的话，建议最好所有文章的<code>date</code>都精确到<code>秒</code>以下，毕竟<code>Gitment</code>是根据这个<code>id</code>来区分文章的。</strong></p>
+<h2 id="零碎的各种配置"><a href="#零碎的各种配置" class="headerlink" title="零碎的各种配置"></a>零碎的各种配置</h2><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak/blob/master/DOCUMENTATION.md" target="_blank" rel="noopener">(GitHub Documentation) - Tranquilpeak</a></li>
+<li><a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">(GitHub Documentation) - Gitment</a></li>
+<li><a href="https://github.com/imsun/gitment/issues/18" target="_blank" rel="noopener">(GitHub Issue - Gitment) Error: Not Found</a></li>
+<li><a href="https://github.com/imsun/gitment/issues/118" target="_blank" rel="noopener">(GitHub Issue - Gitment) Error: Validation Failed</a></li>
 </ul>
 
             
@@ -309,7 +329,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/Nginx/">Nginx</a> <a class="tag tag--primary tag--small t-link" href="/tags/O-M/">O & M</a> <a class="tag tag--primary tag--small t-link" href="/tags/Technology/">Technology</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/Blog/">Blog</a> <a class="tag tag--primary tag--small t-link" href="/tags/Gitment/">Gitment</a> <a class="tag tag--primary tag--small t-link" href="/tags/Hexo/">Hexo</a> <a class="tag tag--primary tag--small t-link" href="/tags/Technology/">Technology</a> <a class="tag tag--primary tag--small t-link" href="/tags/Tranquilpeak/">Tranquilpeak</a>
 
             </div>
         
@@ -319,8 +339,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/welcome/boringtu/" data-tooltip="Welcome to BoringTu&#39;s space" aria-label="上一篇: Welcome to BoringTu&#39;s space">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -328,7 +347,8 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/welcome/boringtu/" data-tooltip="Welcome to BoringTu&#39;s space" aria-label="下一篇: Welcome to BoringTu&#39;s space">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -346,7 +366,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://boringtu.com/Technology/O-M/Nginx/Nginx-学习笔记/" title="分享到 Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/" title="分享到 Google+">
                     <i class="fa fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -354,7 +374,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://boringtu.com/Technology/O-M/Nginx/Nginx-学习笔记/" title="分享到 Weibo">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/" title="分享到 Weibo">
                     <i class="fa fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
@@ -404,8 +424,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/welcome/boringtu/" data-tooltip="Welcome to BoringTu&#39;s space" aria-label="上一篇: Welcome to BoringTu&#39;s space">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -413,7 +432,8 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/welcome/boringtu/" data-tooltip="Welcome to BoringTu&#39;s space" aria-label="下一篇: Welcome to BoringTu&#39;s space">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -431,7 +451,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://boringtu.com/Technology/O-M/Nginx/Nginx-学习笔记/" title="分享到 Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/" title="分享到 Google+">
                     <i class="fa fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -439,7 +459,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://boringtu.com/Technology/O-M/Nginx/Nginx-学习笔记/" title="分享到 Weibo">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/" title="分享到 Weibo">
                     <i class="fa fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
@@ -472,7 +492,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://boringtu.com/Technology/O-M/Nginx/Nginx-学习笔记/">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/">
                     <i class="fa fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
                 </a>
             </li>
@@ -480,7 +500,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://boringtu.com/Technology/O-M/Nginx/Nginx-学习笔记/">
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/">
                     <i class="fa fa-weibo" aria-hidden="true"></i><span>分享到 Weibo</span>
                 </a>
             </li>
@@ -645,8 +665,8 @@
             (function() {
                 function render() {
                     new Gitment({
-                        //id: 'https://boringtu.com/Technology/O-M/Nginx/Nginx-学习笔记/',
-                        id: 'Thu Aug 31 2017 00:00:00 GMT+0800',
+                        //id: 'https://boringtu.com/Technology/Blog/Hexo-博客搭建笔记（theme-Tranquilpeak）/',
+                        id: 'Tue Apr 10 2018 14:00:00 GMT+0800',
                         owner: 'boringtu',
                         repo: 'boringtu.github.io',
                         oauth: {
