@@ -1,6 +1,7 @@
 @charset "UTF-8";
 body {
-  font-family: Arial, "微软雅黑"; }
+  font-family: Arial, "微软雅黑";
+  background: white; }
 
 a {
   color: #417fee; }
