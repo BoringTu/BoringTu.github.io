@@ -1,6 +1,6 @@
 @charset "UTF-8";
 body {
-  font-family: Arial, "微软雅黑"; }
+  font-family: Arial, '微软雅黑'; }
 
 a {
   color: #417fee; }
@@ -147,7 +147,7 @@ header {
     .widget .item .content {
       font-size: 12px;
       color: #666;
-      letter-spacing: -0.5px; }
+      letter-spacing: -.5px; }
   .widget .skillBox {
     display: flex;
     justify-content: space-between;
@@ -214,5 +214,3 @@ header {
     font-size: 14px;
     line-height: 20px;
     text-indent: 2em; }
-
-/*# sourceMappingURL=style.css.map */
